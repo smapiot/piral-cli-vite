@@ -1,0 +1,33 @@
+{
+  "name": "piral-cli-vite-packages",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna clean --yes && lerna bootstrap",
+    "setup": "yarn bootstrap",
+    "build": "lerna run build",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --project tsconfig.json",
+    "prettify": "prettier --config prettier.config.js --write \"src/**/*.{ts,tsx}\"",
+    "test": "jest --forceExit --passWithNoTests",
+    "prepublish": "yarn build",
+    "release": "lerna publish",
+    "ci:version": "node tools/changelog-version.js",
+    "ci:version-update": "yarn ci:version --update && git add CHANGELOG.md && git commit -m UpdateReleaseDate",
+    "ci:canary": "lerna publish $(yarn --silent ci:version)-alpha.$BUILD_BUILDID --exact --yes --force-publish --no-git-tag-version --no-push --dist-tag canary && git checkout -- .",
+    "ci:prerelease": "lerna publish $(yarn --silent ci:version)-beta.$BUILD_BUILDID --exact --yes --force-publish --no-git-tag-version --no-push --dist-tag next && git checkout -- .",
+    "ci:release": "lerna publish $(yarn --silent ci:version) --yes --force-publish --message '[skip ci] publish %s'"
+  },
+  "devDependencies": {
+    "jest": "^25.0.0",
+    "jest-cli": "^25.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.1.1",
+    "ts-jest": "^25.0.0",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^4.4.2"
+  }
+}

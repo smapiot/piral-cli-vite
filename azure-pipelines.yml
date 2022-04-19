@@ -1,0 +1,231 @@
+trigger:
+  branches:
+    include:
+    - main
+    - develop
+    - experimental
+
+variables:
+- group: piral-deployment-variables
+- name: previewId
+  value: $(Build.BuildId)
+- name: agentName
+  value: 'ubuntu-latest'
+- name: releaseBranch
+  value: 'main'
+- name: previewBranch
+  value: 'develop'
+- name: canaryBranch
+  value: 'experimental'
+- name: nodeVersion
+  value: '14.18.1'
+
+stages:
+- stage: Build
+  displayName: Process Code
+
+  jobs:
+  - job: BuildCode
+    displayName: Verify and Build Code
+    pool:
+      vmImage: $(agentName)
+    steps:
+    - task: NodeTool@0
+      displayName: Use Node $(nodeVersion)
+      inputs:
+        versionSpec: $(nodeVersion)
+    - task: YarnInstaller@2
+      displayName: Install Yarn
+      inputs:
+        checkLatest: true
+    - task: Yarn@2
+      displayName: Install Dependencies
+      inputs:
+        Arguments: install
+    - task: Yarn@2
+      displayName: Assemble Packages
+      inputs:
+        Arguments: setup
+    - task: Yarn@2
+      displayName: Test Code
+      inputs:
+        Arguments: test
+
+- stage: CanaryRelease
+
+  displayName: Release Packages (Alpha)
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], variables['canaryBranch']))
+
+  jobs:
+  - deployment: CanaryReleasePackages
+    displayName: CanaryRelease Piral Packages
+    condition: eq(variables['Build.SourceBranchName'], variables['canaryBranch'])
+    pool:
+      vmImage: $(agentName)
+    environment: 'registry-npmjs-org'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+          - task: YarnInstaller@2
+            displayName: Install Yarn
+            inputs:
+              checkLatest: true
+          - task: Yarn@2
+            displayName: Install Dependencies
+            inputs:
+              Arguments: install
+          - task: Yarn@2
+            displayName: Assemble Packages
+            inputs:
+              Arguments: setup
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: .npmrc
+              customEndpoint: DefaultNpmConnection
+          - task: Bash@3
+            displayName: Configure Git
+            inputs:
+              targetType: inline
+              script: >-
+                git config --global user.email "releases@piral.io"
+
+                git config --global user.name "Piral Release Bot"
+
+                git checkout $(canaryBranch)
+
+                git checkout -- .
+          - task: Yarn@2
+            displayName: Canary Packages
+            inputs:
+              Arguments: ci:canary
+              customEndpoint: DefaultNpmConnection
+
+- stage: PreviewRelease
+
+  displayName: Release Packages (Beta)
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], variables['previewBranch']))
+
+  jobs:
+  - deployment: PreReleasePackages
+    displayName: PreRelease Piral Packages
+    condition: eq(variables['Build.SourceBranchName'], variables['previewBranch'])
+    pool:
+      vmImage: $(agentName)
+    environment: 'registry-npmjs-org'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+          - task: YarnInstaller@2
+            displayName: Install Yarn
+            inputs:
+              checkLatest: true
+          - task: Yarn@2
+            displayName: Install Dependencies
+            inputs:
+              Arguments: install
+          - task: Yarn@2
+            displayName: Assemble Packages
+            inputs:
+              Arguments: setup
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: .npmrc
+              customEndpoint: DefaultNpmConnection
+          - task: Bash@3
+            displayName: Configure Git
+            inputs:
+              targetType: inline
+              script: >-
+                git config --global user.email "releases@piral.io"
+
+                git config --global user.name "Piral Release Bot"
+
+                git checkout $(previewBranch)
+
+                git checkout -- .
+          - task: Yarn@2
+            displayName: Prerelease Packages
+            inputs:
+              Arguments: ci:prerelease
+              customEndpoint: DefaultNpmConnection
+
+- stage: Release
+
+  displayName: Release Packages
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], variables['releaseBranch']))
+
+  jobs:
+  - deployment: ReleasePackages
+    displayName: Release Piral Packages
+    condition: eq(variables['Build.SourceBranchName'], variables['releaseBranch'])
+    pool:
+      vmImage: $(agentName)
+    environment: 'registry-npmjs-org'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+          - task: NodeTool@0
+            displayName: Use Node $(nodeVersion)
+            inputs:
+              versionSpec: $(nodeVersion)
+          - task: YarnInstaller@2
+            displayName: Install Yarn
+            inputs:
+              checkLatest: true
+          - task: Yarn@2
+            displayName: Install Dependencies
+            inputs:
+              Arguments: install
+          - task: Yarn@2
+            displayName: Assemble Packages
+            inputs:
+              Arguments: setup
+          - task: npmAuthenticate@0
+            inputs:
+              workingFile: .npmrc
+              customEndpoint: DefaultNpmConnection
+          - task: Bash@3
+            displayName: Configure Git
+            inputs:
+              targetType: inline
+              script: >-
+                git config --global user.email "releases@piral.io"
+
+                git config --global user.name "Piral Release Bot"
+
+                git remote rm origin
+
+                git remote add origin https://$(githubPersonalAccessToken)@github.com/smapiot/piral.git
+
+                git fetch origin
+
+                git checkout $(releaseBranch)
+
+                git checkout -- .
+          - task: Yarn@2
+            displayName: Update Release Date
+            inputs:
+              Arguments: ci:version-update
+              customEndpoint: DefaultNpmConnection
+          - task: Yarn@2
+            displayName: Release Packages
+            inputs:
+              Arguments: ci:release
+              customEndpoint: DefaultNpmConnection
