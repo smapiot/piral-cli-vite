@@ -24,7 +24,8 @@ This plugin comes with batteries included. You don't need to install or specify 
 
 Right now it includes:
 
-- ...
+- `rollup-plugin-codegen`
+- `vite-plugin-environment`
 
 Additionally, most known referenced assets are handled as files.
 

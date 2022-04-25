@@ -1,7 +1,7 @@
-import pilet from 'rollup-plugin-pilet';
+import pilet from 'vite-plugin-pilet';
 import type { PiletBuildHandler } from 'piral-cli';
 import { createCommonConfig } from './common';
-import { runRollup } from './bundler-run';
+import { runVite } from './bundler-run';
 import { extendConfig } from '../helpers';
 
 function nameOf(path: string) {
@@ -44,23 +44,22 @@ const handler: PiletBuildHandler = {
       }
     });
 
-    const baseConfig = createCommonConfig(
-      options.outDir,
-      options.develop,
-      options.sourceMaps,
-      options.contentHash,
-      options.minify,
-    );
+    const baseConfig = createCommonConfig('', options.outDir, options.develop, options.sourceMaps, options.minify, {});
 
     const config = extendConfig(
       {
         ...baseConfig,
-        input,
-        output: {
-          ...baseConfig.output,
-          format: 'system',
+        build: {
+          ...baseConfig.build,
+          lib: {
+            entry: options.entryModule,
+            fileName: options.outFile,
+            formats: ['es'],
+          },
+          rollupOptions: {
+            external,
+          },
         },
-        external,
         plugins: [
           ...baseConfig.plugins,
           pilet({
@@ -75,7 +74,7 @@ const handler: PiletBuildHandler = {
       options.root,
     );
 
-    return runRollup({
+    return runVite({
       ...config,
       debug: options.watch,
       outFile: options.outFile,

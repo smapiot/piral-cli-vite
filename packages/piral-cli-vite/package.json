@@ -43,5 +43,9 @@
     "@types/yargs": "^15.0.4",
     "piral-cli": "^0.14.9"
   },
-  "dependencies": {}
+  "dependencies": {
+    "rollup-plugin-codegen": "next",
+    "vite": "^2.9.5",
+    "vite-plugin-environment": "^1.1.1"
+  }
 }
