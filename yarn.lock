@@ -2592,11 +2592,6 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-ejs@^2.6.2:
-  version "2.7.4"
-  resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.7.4.tgz#48661287573dcc53e366c7a1ae52c3a120eec9ba"
-  integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
-
 electron-to-chromium@^1.4.17:
   version "1.4.63"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.63.tgz#866db72d1221fda89419dc22669d03833e11625d"
@@ -4497,10 +4492,10 @@ kras-management-portal@^0.13.0:
   resolved "https://registry.yarnpkg.com/kras-management-portal/-/kras-management-portal-0.13.0.tgz#550f2797fce399529897aaa871030644d96812c1"
   integrity sha512-NjjXTHKcJ/ECkz03L/HQSUVnkuzZkEV2mwcex36lxJNNwiUrYM5Ju0toAjhLnf8Zpc3nLEPnWKmoTwpSgGim2A==
 
-kras@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/kras/-/kras-0.13.2.tgz#b157ab4409070b408cccb1123d234279dd4667e5"
-  integrity sha512-ACEGQemKZEmFEWuBufyz1NwVRUWIBOjo4R96IPPyU7nyb9dFDqWJ6hwgrwpS1MLpHEdhhd42E4qWOszaqp8WKw==
+kras@^0.14.1:
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/kras/-/kras-0.14.3.tgz#1b3a92b69ae9c8a19260f426b52da893a1c0084e"
+  integrity sha512-6jSalGGBl7WPmrmZYLJNQ4CYmqob8208VcaZUczL0zoFd2cj39sWgYmQllo8v7hBWT8avdu/trQled1nARTHOQ==
   dependencies:
     kras-management-portal "^0.13.0"
     yargs "^15.4.1"
@@ -5625,17 +5620,16 @@ pify@^5.0.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
-piral-cli@^0.14.9:
-  version "0.14.9"
-  resolved "https://registry.yarnpkg.com/piral-cli/-/piral-cli-0.14.9.tgz#ef17d2283803cf76c2beacf103e28195ad3a2bcc"
-  integrity sha512-XwJ+lfwYlX9mURSMLPPt/qWV/jfpKsekiAPaAf2/sKsFuooDCmS6j4PYT8WR9zHmM3NY177DvPZwvgpjc9FC7Q==
+piral-cli@next:
+  version "0.15.0-beta.4411"
+  resolved "https://registry.yarnpkg.com/piral-cli/-/piral-cli-0.15.0-beta.4411.tgz#888b261bae5b55cf05bdcda3ee2db9f88b930cf8"
+  integrity sha512-O9opdI+gSoTtigpLH7xgKdD59IYPMd/a9FIjtrvZKGsx3sG2Bp8jpHYGves75J9NP/5K3IxzHfDgK4MaiDWiCg==
   dependencies:
     chalk "^2.4.2"
     dets "^0.11.1"
-    ejs "^2.6.2"
-    kras "^0.13.2"
+    kras "^0.14.1"
     rimraf "^3.0.0"
-    typescript "^4.0.2"
+    typescript "^4.7.3"
     yargs "^15.4.1"
 
 pirates@^4.0.1:
@@ -6930,10 +6924,15 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.0.2, typescript@^4.4.2:
+typescript@^4.4.2:
   version "4.5.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
   integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
+
+typescript@^4.7.3:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 uglify-js@^3.1.4:
   version "3.15.0"
