@@ -23,7 +23,25 @@ export function runVite(options: ViteConfig) {
         config.build.watch = {};
       }
 
-      await build(config);
+      const watcher = await build(config);
+
+      if (debug && 'on' in watcher) {
+        watcher.on('event', (event) => {
+          if (event.code === 'ERROR') {
+            console.log(event);
+          } else if (event.code === 'BUNDLE_START') {
+            console.log('Bunding ...');
+          } else if (event.code === 'BUNDLE_END') {
+            event.result.close();
+            console.log('Bundled!');
+          } else if (event.code === 'END') {
+            eventEmitter.emit('end', bundle);
+          }
+        });
+
+        eventEmitter.emit('start', bundle);
+      }
+
       return bundle;
     },
     onStart(cb) {

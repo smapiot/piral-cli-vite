@@ -53,10 +53,14 @@ const handler: PiletBuildHandler = {
           ...baseConfig.build,
           lib: {
             entry: options.entryModule,
-            fileName: options.outFile,
-            formats: ['es'],
+            fileName: () => options.outFile,
+            formats: ['system' as any],
           },
           rollupOptions: {
+            input,
+            output: {
+              entryFileNames: '[name].js',
+            },
             external,
           },
         },

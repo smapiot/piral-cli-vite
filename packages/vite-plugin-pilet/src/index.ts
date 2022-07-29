@@ -15,26 +15,28 @@ export default function pilet({ id, debug, piletName, importmap, requireRef }: P
 
   return {
     name: 'pilet',
-    resolveId(id) {
+    transform(_, id) {
       if (id.endsWith('.css') || id.endsWith('.scss') || id.endsWith('.sass')) {
         cssFiles.push(id);
       }
-
-      return null;
     },
-    renderChunk(content, { map, isEntry, name }) {
-      let code = modifyImports(content, importmap);
+    generateBundle(_, bundle) {
+      Object.keys(bundle).forEach((file) => {
+        const asset = bundle[file];
 
-      if (isEntry && name === id) {
-        if (cssFiles.length) {
-          code = insertStylesheet(code, piletName, debug);
+        if (asset.type === 'chunk' && asset.isEntry) {
+          asset.code = prependBanner(asset.code, requireRef, importmap);
         }
+      });
+    },
+    renderChunk(content, { isEntry, name }) {
+      const code = modifyImports(content, importmap);
 
-        code = prependBanner(code, requireRef, importmap);
-        return { code, map };
+      if (isEntry && name === id && cssFiles.length) {
+        return insertStylesheet(code, piletName, debug);
       }
 
-      return { code, map };
+      return code;
     },
   };
 }

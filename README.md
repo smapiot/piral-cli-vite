@@ -16,27 +16,27 @@ The `piral-cli` plugin for using `vite` as bundler.
 
 ## Status
 
-* [ ] Pilets (tested / working)
+* [x] Pilets (tested / working)
   * [x] Codegen
-  * [ ] Bundle Splitting
-  * [ ] ESM output
-  * [ ] CSS / SASS
-  * [ ] Importmap references
-  * [ ] Importmap bundles
+  * [x] Bundle Splitting
+  * [x] ESM output
+  * [x] CSS / SASS
+  * [x] Importmap references
+  * [x] Importmap bundles
   * [ ] v0 format (not implemented)
   * [ ] v1 format (not implemented)
-  * [ ] v2 format
-  * [ ] tsconfig changes
-  * [ ] Building
-  * [ ] Debugging
-  * [ ] Reloading
+  * [x] v2 format
+  * [x] tsconfig changes
+  * [x] Building
+  * [x] Debugging
+  * [x] Reloading
 * [x] Piral instances (tested / working)
   * [x] Codegen
   * [x] HTML entry point
-  * [ ] Emulator build
+  * [x] Emulator build
   * [x] Release build
   * [x] tsconfig changes
-  * [ ] Debugging
+  * [x] Debugging
   * [ ] Reloading
 
 ## License
