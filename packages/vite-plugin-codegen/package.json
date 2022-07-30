@@ -1,0 +1,39 @@
+{
+  "name": "vite-plugin-codegen",
+  "version": "0.15.0",
+  "description": "Adds support for codegen files",
+  "keywords": [
+    "vite",
+    "codegen",
+    "virtual",
+    "module",
+    "plugin"
+  ],
+  "author": "smapiot",
+  "homepage": "https://piral.io",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "engines": {
+    "node": ">=12.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/smapiot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smapiot/piral-cli-vite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smapiot/piral-cli-vite/issues"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {}
+}

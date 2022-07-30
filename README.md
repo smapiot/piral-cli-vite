@@ -37,7 +37,7 @@ The `piral-cli` plugin for using `vite` as bundler.
   * [x] Release build
   * [x] tsconfig changes
   * [x] Debugging
-  * [ ] Reloading
+  * [x] Reloading
 
 ## License
 

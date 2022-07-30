@@ -1,24 +1,22 @@
 import type { PiralBuildHandler } from 'piral-cli';
 import type { Plugin } from 'vite';
-import { dirname } from 'path';
+import { dirname, resolve } from 'path';
 import { createCommonConfig } from './common';
 import { runVite } from './bundler-run';
 import { extendConfig } from '../helpers';
+import { readFileSync, writeFileSync } from 'fs';
 
-const htmlTransform: Plugin = {
-  name: 'html-transform',
-  transformIndexHtml(html) {
-    return html
-      .replace(/<script\s+src\s*=\s*"\.\/(.*?)"\s*>/g, '<script src="./$1" type=module>')
-      .replace(/<script\s+src\s*=\s*'\.\/(.*?)'\s*>/g, "<script src='./$1' type=module>")
-      .replace(/<script\s*>/, '<script type=module>');
-  },
-};
+function transformIndexHtml(html: string) {
+  return html
+    .replace(/<script\s+src\s*=\s*"\.\/(.*?)"\s*>/gm, '<script src="./$1" type=module>')
+    .replace(/<script\s+src\s*=\s*'\.\/(.*?)'\s*>/gm, "<script src='./$1' type=module>")
+    .replace(/<script\s*>/gm, '<script type=module>');
+}
 
 const handler: PiralBuildHandler = {
   create(options) {
     const rootDir = dirname(options.entryFiles);
-    const newPlugins = [htmlTransform];
+    const newPlugins: Array<Plugin> = [];
     const baseConfig = createCommonConfig(
       rootDir,
       options.outDir,
@@ -48,6 +46,10 @@ const handler: PiralBuildHandler = {
         },
       });
     }
+
+    const indexHtml = resolve(rootDir, 'index.html');
+    const content = readFileSync(indexHtml, 'utf8');
+    writeFileSync(indexHtml, transformIndexHtml(content), 'utf8');
 
     const config = extendConfig(
       {

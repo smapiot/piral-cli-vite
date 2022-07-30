@@ -1,6 +1,6 @@
 import { UserConfig } from 'vite';
-import EnvironmentPlugin from 'vite-plugin-environment';
-import codegen from 'rollup-plugin-codegen';
+import codegen from 'vite-plugin-codegen';
+import environment from 'vite-plugin-environment';
 
 export function createCommonConfig(
   root: string,
@@ -10,6 +10,13 @@ export function createCommonConfig(
   minify = true,
   variables: Record<string, string> = {},
 ): UserConfig {
+  const varKeys = Object.keys({
+    BUILD_PCKG_NAME: process.env.BUILD_PCKG_NAME,
+    BUILD_PCKG_VERSION: process.env.BUILD_PCKG_VERSION,
+    BUILD_TIME_FULL: process.env.BUILD_TIME_FULL,
+    PIRAL_CLI_VERSION: process.env.PIRAL_CLI_VERSION,
+    ...variables,
+  });
   return {
     root,
     build: {
@@ -18,6 +25,6 @@ export function createCommonConfig(
       emptyOutDir: true,
       minify,
     },
-    plugins: [EnvironmentPlugin(Object.keys(variables)), codegen()],
+    plugins: [environment(varKeys), codegen()],
   };
 }
