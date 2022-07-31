@@ -24,15 +24,15 @@ export default function pilet({ id, debug, piletName, importmap, requireRef }: P
       Object.keys(bundle).forEach((file) => {
         const asset = bundle[file];
 
-        if (asset.type === 'chunk' && asset.isEntry) {
+        if (asset.type === 'chunk' && asset.isEntry && asset.name === id) {
           asset.code = prependBanner(asset.code, requireRef, importmap);
         }
       });
     },
-    renderChunk(content, { isEntry, name }) {
+    renderChunk(content, asset) {
       const code = modifyImports(content, importmap);
 
-      if (isEntry && name === id && cssFiles.length) {
+      if (asset.isEntry && asset.name === id && cssFiles.length) {
         return insertStylesheet(code, piletName, debug);
       }
 
