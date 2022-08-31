@@ -2546,10 +2546,10 @@ detect-newline@^3.0.0:
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
 
-dets@^0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/dets/-/dets-0.11.1.tgz#96bb4ab9e03bd4bbd24a66c6f3f9196c7d02a89c"
-  integrity sha512-jZNAoHtBJsr1lqf16aI597k+ymfxy3PEK/GmM3TiAdlzdlRkmhIRIftDGXf4vXd8LruviBgEMSUVC938rZdpyQ==
+dets@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/dets/-/dets-0.12.0.tgz#f6488d44059ef4b63c36e5949e1cd5792045dd66"
+  integrity sha512-L3ZMC2lBfcxffdBRguce4WA+GPoHAqndlqDZS6AQDt96MDMhvGb1MALEYd5SP2He0ENyGgB8Ap4lXwPhaeQ/yg==
   dependencies:
     yargs "^15.4.1"
 
@@ -4531,10 +4531,10 @@ kras-management-portal@^0.13.0:
   resolved "https://registry.yarnpkg.com/kras-management-portal/-/kras-management-portal-0.13.0.tgz#550f2797fce399529897aaa871030644d96812c1"
   integrity sha512-NjjXTHKcJ/ECkz03L/HQSUVnkuzZkEV2mwcex36lxJNNwiUrYM5Ju0toAjhLnf8Zpc3nLEPnWKmoTwpSgGim2A==
 
-kras@^0.14.1:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/kras/-/kras-0.14.3.tgz#1b3a92b69ae9c8a19260f426b52da893a1c0084e"
-  integrity sha512-6jSalGGBl7WPmrmZYLJNQ4CYmqob8208VcaZUczL0zoFd2cj39sWgYmQllo8v7hBWT8avdu/trQled1nARTHOQ==
+kras@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/kras/-/kras-0.15.1.tgz#1f15b294f6ca9240043f41d1ae85d5b32e613d07"
+  integrity sha512-ftr5otMi+TQJPNoGwLYMoKM/lX2JhJVk99ikuYhHI7JSYrsZdv9+2A3Y8QlurILRqS1/tSQGBfA/XRfMdkbidA==
   dependencies:
     kras-management-portal "^0.13.0"
     yargs "^15.4.1"
@@ -5660,13 +5660,13 @@ pify@^5.0.0:
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
 
 piral-cli@next:
-  version "0.15.0-beta.4411"
-  resolved "https://registry.yarnpkg.com/piral-cli/-/piral-cli-0.15.0-beta.4411.tgz#888b261bae5b55cf05bdcda3ee2db9f88b930cf8"
-  integrity sha512-O9opdI+gSoTtigpLH7xgKdD59IYPMd/a9FIjtrvZKGsx3sG2Bp8jpHYGves75J9NP/5K3IxzHfDgK4MaiDWiCg==
+  version "0.15.0-beta.4633"
+  resolved "https://registry.yarnpkg.com/piral-cli/-/piral-cli-0.15.0-beta.4633.tgz#4ca24901243febfc783ce133e05d6cf98297bf1b"
+  integrity sha512-XZCYAWyDsAAdldnRBhHy7S+AJBpO2hbZEt4ak/ntwMo2pW+EgRaWZ24qdmOoFhGteAIsNTWQkck+NexskUznUw==
   dependencies:
     chalk "^2.4.2"
-    dets "^0.11.1"
-    kras "^0.14.1"
+    dets "^0.12.0"
+    kras "^0.15.1"
     rimraf "^3.0.0"
     typescript "^4.7.3"
     yargs "^15.4.1"
