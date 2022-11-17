@@ -212,7 +212,7 @@ stages:
 
                 git remote rm origin
 
-                git remote add origin https://$(githubPersonalAccessToken)@github.com/smapiot/piral.git
+                git remote add origin https://$(githubPersonalAccessToken)@github.com/smapiot/piral-cli-vite.git
 
                 git fetch origin
 

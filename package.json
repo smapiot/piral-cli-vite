@@ -22,7 +22,7 @@
   "devDependencies": {
     "jest": "^25.0.0",
     "jest-cli": "^25.0.0",
-    "lerna": "^4.0.0",
+    "lerna": "^6.0.3",
     "prettier": "^2.1.1",
     "ts-jest": "^25.0.0",
     "tslint": "^5.12.1",
