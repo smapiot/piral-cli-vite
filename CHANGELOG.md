@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.15.1 (tbd)
+## 0.15.1 (January 17, 2023)
 
 - Fixed issue with `vite-plugin-codegen` to have static options
 - Fixed empty outdir - will be cleaned up by `piral-cli`
