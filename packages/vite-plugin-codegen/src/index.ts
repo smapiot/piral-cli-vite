@@ -5,7 +5,7 @@ function reloadGenerator(name: string) {
   return require(name);
 }
 
-export default function codegen(): Plugin {
+export default function codegen(options = { outDir: 'dist', rootDir: process.cwd() }): Plugin {
   return {
     name: 'codegen',
     resolveId(source) {
@@ -21,11 +21,8 @@ export default function codegen(): Plugin {
 
         return generator.call({
           name: id,
-          options: {
-            outDir: 'dist',
-            rootDir: process.cwd(),
-          },
-          addDependency: (file, options) => {
+          options,
+          addDependency: (file) => {
             this.addWatchFile(file);
           },
         });

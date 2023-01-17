@@ -22,9 +22,9 @@ export function createCommonConfig(
     build: {
       outDir,
       sourcemap,
-      emptyOutDir: true,
+      emptyOutDir: false,
       minify,
     },
-    plugins: [environment(varKeys), codegen()],
+    plugins: [environment(varKeys), codegen({ outDir, rootDir: root })],
   };
 }
