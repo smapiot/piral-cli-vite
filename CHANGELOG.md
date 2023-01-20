@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.2 (tbd)
+
+- Changed standard configuration to place assets directly in output folder
+
 ## 0.15.1 (January 17, 2023)
 
 - Fixed issue with `vite-plugin-codegen` to have static options

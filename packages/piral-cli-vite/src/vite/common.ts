@@ -24,6 +24,13 @@ export function createCommonConfig(
       sourcemap,
       emptyOutDir: false,
       minify,
+      rollupOptions: {
+        output: {
+          assetFileNames: '[name].[hash][extname]',
+          chunkFileNames: '[name].[hash].js',
+          entryFileNames: '[name].[hash].js',
+        },
+      },
     },
     plugins: [environment(varKeys), codegen({ outDir, rootDir: root })],
   };
