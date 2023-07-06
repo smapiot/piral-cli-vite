@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 (tbd)
+## 1.0.0 (July 6, 2023)
 
 - Fixed support in `piral-cli` 1.0.0 (#2)
 - Fixed issue to support Angular 16 (#1)
