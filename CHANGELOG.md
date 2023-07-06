@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.15.2 (tbd)
+## 0.15.2 (July 6, 2023)
 
 - Changed standard configuration to place assets directly in output folder
 
