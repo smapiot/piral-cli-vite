@@ -2,7 +2,8 @@
 
 ## 1.0.0 (tbd)
 
-- Adjusted to `piral-cli` 1.0.0
+- Fixed support in `piral-cli` 1.0.0 (#2)
+- Fixed issue to support Angular 16 (#1)
 - Updated to use Vite v4
 
 ## 0.15.2 (July 6, 2023)
