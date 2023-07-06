@@ -1,6 +1,6 @@
 {
   "name": "piral-cli-vite",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "Provides debug and build capabilities for pilets and Piral instances using Vite.",
   "keywords": [
     "piral-cli",
@@ -46,8 +46,8 @@
   "dependencies": {
     "sass": "^1.54.0",
     "vite": "^2",
-    "vite-plugin-codegen": "^0.15.1",
+    "vite-plugin-codegen": "^0.15.2",
     "vite-plugin-environment": "^1.1.2",
-    "vite-plugin-pilet": "^0.15.1"
+    "vite-plugin-pilet": "^0.15.2"
   }
 }
