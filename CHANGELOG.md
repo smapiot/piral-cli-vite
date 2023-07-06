@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0 (tbd)
+
+- Adjusted to `piral-cli` 1.0.0
+- Updated to use Vite v4
+
 ## 0.15.2 (July 6, 2023)
 
 - Changed standard configuration to place assets directly in output folder

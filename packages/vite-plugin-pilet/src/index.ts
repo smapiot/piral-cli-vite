@@ -1,5 +1,5 @@
 import type { SharedDependency } from 'piral-cli';
-import { Plugin } from 'rollup';
+import type { Plugin } from 'vite';
 import { insertStylesheet, modifyImports, prependBanner } from './banner';
 
 export interface PiletPluginOptions {

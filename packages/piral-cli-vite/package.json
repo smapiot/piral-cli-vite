@@ -17,7 +17,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "engines": {
-    "node": ">=10.0"
+    "node": ">=14.0"
   },
   "files": [
     "lib",
@@ -39,13 +39,13 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "devDependencies": {
-    "@types/node": "^13.9.0",
+    "@types/node": "^16",
     "@types/yargs": "^15.0.4",
-    "piral-cli": "next"
+    "piral-cli": "1.0.2"
   },
   "dependencies": {
     "sass": "^1.54.0",
-    "vite": "^2",
+    "vite": "^4",
     "vite-plugin-codegen": "^0.15.2",
     "vite-plugin-environment": "^1.1.2",
     "vite-plugin-pilet": "^0.15.2"

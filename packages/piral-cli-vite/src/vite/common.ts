@@ -1,4 +1,4 @@
-import { UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
 import codegen from 'vite-plugin-codegen';
 import environment from 'vite-plugin-environment';
 

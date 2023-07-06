@@ -1,6 +1,6 @@
 import { existsSync } from 'fs';
 import { resolve } from 'path';
-import { UserConfig } from 'vite';
+import type { UserConfig } from 'vite';
 import { defaultViteConfig } from './constants';
 
 export function extendConfig(viteConfig: UserConfig, root: string): UserConfig {

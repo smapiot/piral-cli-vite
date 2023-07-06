@@ -15,12 +15,12 @@ export default function codegen(options = { outDir: 'dist', rootDir: process.cwd
 
       return null;
     },
-    load(id) {
-      if (id.endsWith('.codegen')) {
-        const generator = reloadGenerator(id);
+    load(name) {
+      if (name.endsWith('.codegen')) {
+        const generator = reloadGenerator(name);
 
         return generator.call({
-          name: id,
+          name,
           options,
           addDependency: (file) => {
             this.addWatchFile(file);
