@@ -35,6 +35,10 @@
   "scripts": {
     "build": "tsc"
   },
+  "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "magic-string": "^0.30.5"
+  },
   "devDependencies": {
     "piral-cli": "1.0.2",
     "vite": "^4"

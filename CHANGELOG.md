@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 (tbd)
+
+- Fixed support for source maps in pilets (#3)
+
 ## 1.0.0 (July 6, 2023)
 
 - Fixed support in `piral-cli` 1.0.0 (#2)
