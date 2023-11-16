@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.2 (tbd)
+## 1.0.2 (November 16, 2023)
 
 - Fixed double usage of `vite.config.js` (#4)
 - Added `process.env.NODE_ENV` to automatically exposed variables
