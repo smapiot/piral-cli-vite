@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 (tbd)
+
+- Fixed double usage of `vite.config.js` (#4)
+- Added `process.env.NODE_ENV` to automatically exposed variables
+
 ## 1.0.1 (November 8, 2023)
 
 - Fixed support for source maps in pilets (#3)

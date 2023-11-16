@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
-import { UserConfig, build } from 'vite';
+import { InlineConfig, build } from 'vite';
 
-interface ViteConfig extends UserConfig {
+interface ViteConfig extends InlineConfig {
   debug: boolean;
   outFile: string;
   requireRef?: string;

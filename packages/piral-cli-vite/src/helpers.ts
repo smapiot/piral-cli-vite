@@ -1,9 +1,9 @@
 import { existsSync } from 'fs';
 import { resolve } from 'path';
-import type { UserConfig } from 'vite';
+import type { InlineConfig } from 'vite';
 import { defaultViteConfig } from './constants';
 
-export function extendConfig(viteConfig: UserConfig, root: string): UserConfig {
+export function extendConfig(viteConfig: InlineConfig, root: string): InlineConfig {
   const otherConfigPath = resolve(root, defaultViteConfig);
 
   if (existsSync(otherConfigPath)) {
