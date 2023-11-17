@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 (tbd)
+
+- Fixed invalid reference to CSS stylesheet in pilet (#5)
+
 ## 1.0.2 (November 16, 2023)
 
 - Fixed double usage of `vite.config.js` (#4)

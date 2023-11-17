@@ -61,6 +61,14 @@ const handler: PiletBuildHandler = {
             input,
             output: {
               ...baseConfig.build.rollupOptions.output,
+              assetFileNames(assetInfo) {
+                // keep name of combined stylesheet
+                if (assetInfo.name === 'style.css') {
+                  return assetInfo.name;
+                }
+
+                return '[name].[hash][extname]';
+              },
               entryFileNames: '[name].js',
             },
             external,
