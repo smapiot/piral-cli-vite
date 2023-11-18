@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-codegen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Adds support for codegen files",
   "keywords": [
     "vite",
