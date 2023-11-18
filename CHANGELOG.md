@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.3 (tbd)
+## 1.0.3 (November 18, 2023)
 
 - Fixed invalid reference to CSS stylesheet in pilet (#5)
 
