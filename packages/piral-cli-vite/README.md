@@ -31,6 +31,40 @@ Additionally, most known referenced assets are handled as files.
 
 As such it should be prepared to include assets (images, videos, ...), stylesheets (CSS and SASS), and work with TypeScript.
 
+### Public Folder
+
+By default the source folder (e.g., `/src`) is set as root. Therefore, the `src/public` folder (if available) will be used for the public assets. If you want to change this you can use a custom Vite config as explained below, e.g.:
+
+```js
+const { resolve } = require('path');
+
+module.exports = function(config) {
+  config.publicDir = resolve(__dirname, 'public');
+  return config;
+};
+```
+
+### Referencing Scripts
+
+Vite uses all scripts with `type=module` to be entry points in the *index.html* file. However, as you might just have scaffolded a solution or are more used to simply have `<script src="./index.tsx">` in your HTML file we patch the *index.html* to match exactly that. Nevertheless, this creates a problem if you want to, for instance, reference some scripts that should **not** be part of the bundling (or would only exist later).
+
+One thing to do here is to put some attribute to the script, i.e., transform
+
+```html
+<script src="./do-not-pick-up.js"></script>
+```
+
+to
+
+```html
+<!-- version below if order and immediate are relevant -->
+<script blocking src="./do-not-bundle.js"></script>
+<!-- version below if order is relevant, but immediate is not relevant -->
+<script defer src="./do-not-bundle.js"></script>
+<!-- version below if order and immediate are irrelevant -->
+<script async src="./do-not-bundle.js"></script>
+```
+
 ### Customizing
 
 If you want to customize the given config (e.g., to add more plugins) then create a file *vite.config.js* in your root directory.
