@@ -16,8 +16,19 @@ function getRequireRef() {
   return `rolluppr_${name.replace(/\W/gi, '')}`;
 }
 
+const supportedSchemas = ['v2', 'v3'];
+
+function checkSupported(schema: string): asserts schema is 'v2' | 'v3' {
+  if (!supportedSchemas.includes(schema)) {
+    throw new Error(
+      `The provided schema version is not supported. This version supports: ${supportedSchemas.join(', ')}.`,
+    );
+  }
+}
+
 const handler: PiletBuildHandler = {
   create(options) {
+    const schema = options.version;
     const piletName = getPackageName();
     const requireRef = getRequireRef();
     const external: Array<string> = [];
@@ -42,6 +53,8 @@ const handler: PiletBuildHandler = {
         input[nameOf(dep.ref)] = dep.entry;
       }
     });
+    
+    checkSupported(schema);
 
     const config = createCommonConfig('', options.outDir, options.develop, options.sourceMaps, options.minify, {});
 
@@ -76,6 +89,7 @@ const handler: PiletBuildHandler = {
         ...config.plugins,
         pilet({
           id,
+          schema,
           piletName,
           requireRef,
           importmap: options.importmap,

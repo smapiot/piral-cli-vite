@@ -1,18 +1,12 @@
 import MagicString from 'magic-string';
 import { decode, encode } from '@jridgewell/sourcemap-codec';
-import type { SharedDependency } from 'piral-cli';
 import type { Plugin } from 'vite';
+import type { PiletPluginOptions } from './types';
 import { insertStylesheet, modifyImports, prependBanner } from './banner';
 
-export interface PiletPluginOptions {
-  id: string;
-  debug: boolean;
-  importmap: Array<SharedDependency>;
-  requireRef: string;
-  piletName: string;
-}
+export type * from './types';
 
-export default function pilet({ id, debug, piletName, importmap, requireRef }: PiletPluginOptions): Plugin {
+export default function pilet({ id, debug, piletName, importmap, requireRef, schema }: PiletPluginOptions): Plugin {
   const cssFiles: Array<string> = [];
 
   return {
@@ -29,7 +23,7 @@ export default function pilet({ id, debug, piletName, importmap, requireRef }: P
         if (asset.type === 'chunk' && asset.isEntry && asset.name === id) {
           const sm = bundle[`${file}.map`];
           const ms = new MagicString(asset.code);
-          prependBanner(ms, requireRef, importmap);
+          prependBanner(ms, requireRef, importmap, schema);
           asset.code = ms.toString();
 
           if (sm && 'source' in sm && typeof sm.source === 'string') {
@@ -48,7 +42,7 @@ export default function pilet({ id, debug, piletName, importmap, requireRef }: P
       modifyImports(ms, importmap);
 
       if (asset.isEntry && asset.name === id && cssFiles.length) {
-        insertStylesheet(ms, piletName, debug);
+        insertStylesheet(ms, piletName, debug, schema);
       }
 
       return {
