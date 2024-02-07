@@ -3,7 +3,8 @@
 ## 1.1.0 (tbd)
 
 - Improved the documentation
-- Read `vite.config.js` (or alternatives, e.g., `vite.config.ts`) within Vite
+- Added support for standard `vite.config.js` (or alternatives, e.g., `vite.config.ts`) within Vite (#7)
+- Added support for pilet schema `v3`
 
 ## 1.0.3 (November 18, 2023)
 

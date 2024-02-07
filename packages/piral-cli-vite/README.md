@@ -67,7 +67,7 @@ to
 
 ### Customizing
 
-If you want to customize the given config (e.g., to add more plugins) then create a file *vite.config.js* in your root directory.
+If you want to customize the given config (e.g., to add more plugins) then create a file *vite.config.js* (or anything else accepted by Vite, e.g., *vite.config.ts*) in your root directory.
 
 In the most trivial version the file looks as follows:
 
@@ -80,15 +80,23 @@ module.exports = function(config) {
 This would just receive the original build config and return them, i.e., essentially not doing anything. If you want to add some plugin you could do:
 
 ```js
-const fooPlugin = require('vite-plugin-foo');
+import { defineConfig } from "vite";
 
-module.exports = function(config) {
-  config.plugins.push(fooPlugin());
-  return options;
-};
+export default defineConfig({});
 ```
 
 There are no overrides applied afterwards. Therefore, what you modify will remain in the config.
+
+If you are unsure what your custom config will override then use a callback such as:
+
+```js
+import fooPlugin from 'vite-plugin-foo';
+
+export default function (config) {
+  config.plugins.push(fooPlugin());
+  return config;
+}
+```
 
 ## License
 

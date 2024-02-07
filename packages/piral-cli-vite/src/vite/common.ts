@@ -20,7 +20,6 @@ export function createCommonConfig(
   });
   return {
     root,
-    configFile: false,
     build: {
       outDir,
       sourcemap,
