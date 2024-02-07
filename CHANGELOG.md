@@ -1,8 +1,9 @@
 # Changelog
 
-## 1.0.4 (tbd)
+## 1.1.0 (tbd)
 
 - Improved the documentation
+- Read `vite.config.js` (or alternatives, e.g., `vite.config.ts`) within Vite
 
 ## 1.0.3 (November 18, 2023)
 

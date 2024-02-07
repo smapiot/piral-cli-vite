@@ -2,7 +2,6 @@ import pilet from 'vite-plugin-pilet';
 import type { PiletBuildHandler } from 'piral-cli';
 import { createCommonConfig } from './common';
 import { runVite } from './bundler-run';
-import { extendConfig } from '../helpers';
 
 function nameOf(path: string) {
   return path.replace(/\.js$/, '');
@@ -44,52 +43,45 @@ const handler: PiletBuildHandler = {
       }
     });
 
-    const baseConfig = createCommonConfig('', options.outDir, options.develop, options.sourceMaps, options.minify, {});
-
-    const config = extendConfig(
-      {
-        ...baseConfig,
-        build: {
-          ...baseConfig.build,
-          lib: {
-            entry: options.entryModule,
-            fileName: () => options.outFile,
-            formats: ['system' as any],
-          },
-          rollupOptions: {
-            ...baseConfig.build.rollupOptions,
-            input,
-            output: {
-              ...baseConfig.build.rollupOptions.output,
-              assetFileNames(assetInfo) {
-                // keep name of combined stylesheet
-                if (assetInfo.name === 'style.css') {
-                  return assetInfo.name;
-                }
-
-                return '[name].[hash][extname]';
-              },
-              entryFileNames: '[name].js',
-            },
-            external,
-          },
-        },
-        plugins: [
-          ...baseConfig.plugins,
-          pilet({
-            id,
-            piletName,
-            requireRef,
-            importmap: options.importmap,
-            debug: options.develop,
-          }),
-        ],
-      },
-      options.root,
-    );
+    const config = createCommonConfig('', options.outDir, options.develop, options.sourceMaps, options.minify, {});
 
     return runVite({
       ...config,
+      build: {
+        ...config.build,
+        lib: {
+          entry: options.entryModule,
+          fileName: () => options.outFile,
+          formats: ['system' as any],
+        },
+        rollupOptions: {
+          ...config.build.rollupOptions,
+          input,
+          output: {
+            ...config.build.rollupOptions.output,
+            assetFileNames(assetInfo) {
+              // keep name of combined stylesheet
+              if (assetInfo.name === 'style.css') {
+                return assetInfo.name;
+              }
+
+              return '[name].[hash][extname]';
+            },
+            entryFileNames: '[name].js',
+          },
+          external,
+        },
+      },
+      plugins: [
+        ...config.plugins,
+        pilet({
+          id,
+          piletName,
+          requireRef,
+          importmap: options.importmap,
+          debug: options.develop,
+        }),
+      ],
       debug: options.watch,
       outFile: options.outFile,
       requireRef,
