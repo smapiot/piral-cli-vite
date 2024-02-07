@@ -1,10 +1,10 @@
 import MagicString from 'magic-string';
 import { decode, encode } from '@jridgewell/sourcemap-codec';
 import type { Plugin } from 'vite';
-import type { PiletPluginOptions } from './types';
 import { insertStylesheet, modifyImports, prependBanner } from './banner';
+import type { PiletPluginOptions } from './types';
 
-export type * from './types';
+export { PiletPluginOptions };
 
 export default function pilet({ id, debug, piletName, importmap, requireRef, schema }: PiletPluginOptions): Plugin {
   const cssFiles: Array<string> = [];
