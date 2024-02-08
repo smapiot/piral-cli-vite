@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0 (tbd)
+## 1.1.0 (February 8, 2024)
 
 - Improved the documentation
 - Added support for standard `vite.config.js` (or alternatives, e.g., `vite.config.ts`) within Vite (#7)
