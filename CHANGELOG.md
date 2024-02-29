@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 (tbd)
+
+- Fixed support for `vite.config.js` in execution root of `piral build` (#7)
+
 ## 1.1.0 (February 8, 2024)
 
 - Improved the documentation

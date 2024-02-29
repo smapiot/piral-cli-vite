@@ -36,12 +36,11 @@ As such it should be prepared to include assets (images, videos, ...), styleshee
 By default the source folder (e.g., `/src`) is set as root. Therefore, the `src/public` folder (if available) will be used for the public assets. If you want to change this you can use a custom Vite config as explained below, e.g.:
 
 ```js
-const { resolve } = require('path');
+import { resolve } from 'path';
 
-module.exports = function(config) {
-  config.publicDir = resolve(__dirname, 'public');
-  return config;
-};
+export default {
+  publicDir: resolve(__dirname, 'public'),
+}
 ```
 
 ### Referencing Scripts
@@ -72,31 +71,29 @@ If you want to customize the given config (e.g., to add more plugins) then creat
 In the most trivial version the file looks as follows:
 
 ```js
-module.exports = function(config) {
-  return config;
-};
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  // Your config additions here
+});
 ```
 
-This would just receive the original build config and return them, i.e., essentially not doing anything. If you want to add some plugin you could do:
+If you want to add some plugin you could do:
 
 ```js
 import { defineConfig } from "vite";
+import legacy from "@vitejs/plugin-legacy";
 
-export default defineConfig({});
+export default defineConfig({
+  plugins: [
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+  ],
+});
 ```
 
-There are no overrides applied afterwards. Therefore, what you modify will remain in the config.
-
-If you are unsure what your custom config will override then use a callback such as:
-
-```js
-import fooPlugin from 'vite-plugin-foo';
-
-export default function (config) {
-  config.plugins.push(fooPlugin());
-  return config;
-}
-```
+The configuration works with all formats that Vite supports.
 
 ## License
 
