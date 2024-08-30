@@ -18,7 +18,7 @@ variables:
 - name: canaryBranch
   value: 'experimental'
 - name: nodeVersion
-  value: '14.18.1'
+  value: '16.16.0'
 
 stages:
 - stage: Build
