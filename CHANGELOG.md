@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 (tbd)
+
+- Updated the Vite plugins to work with ESM and CJS
+
 ## 1.1.1 (February 29, 2024)
 
 - Fixed support for `vite.config.js` in execution root of `piral build` (#7)

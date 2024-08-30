@@ -1,8 +1,11 @@
 import type { Plugin } from 'vite';
+import { createRequire } from "module";
+
+const requireModule = createRequire(__filename);
 
 function reloadGenerator(name: string) {
   delete require.cache[require.resolve(name)];
-  return require(name);
+  return requireModule(name);
 }
 
 export default function codegen(options = { outDir: 'dist', rootDir: process.cwd() }): Plugin {
