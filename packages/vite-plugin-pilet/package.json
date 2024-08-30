@@ -13,16 +13,16 @@
   "homepage": "https://piral.io",
   "license": "MIT",
   "type": "module",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
-  "typings": "lib/esm/index.d.ts",
+  "main": "lib/cjs/index.cjs",
+  "module": "lib/esm/index.mjs",
+  "typings": "src/index.ts",
   "engines": {
     "node": ">=16.0"
   },
   "exports": {
     ".": {
-      "import": "./lib/esm/index.js",
-      "require": "./lib/cjs/index.js"
+      "import": "./lib/esm/index.mjs",
+      "require": "./lib/cjs/index.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -42,9 +42,10 @@
     "src"
   ],
   "scripts": {
+    "test": "tsc --noEmit",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
-    "build:esm": "tsc --module esnext --outDir lib/esm"
+    "build:cjs": "esbuild 'src/index.ts' --sourcemap --bundle --packages=external --platform=node --format=cjs --out-extension:.js=.cjs --outdir=lib/cjs",
+    "build:esm": "esbuild 'src/index.ts' --sourcemap --bundle --packages=external --platform=node --format=esm --out-extension:.js=.mjs --outdir=lib/esm"
   },
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",

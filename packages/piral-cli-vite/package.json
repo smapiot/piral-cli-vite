@@ -35,8 +35,7 @@
     "url": "https://github.com/smapiot/piral-cli-vite/issues"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/node": "^16",
