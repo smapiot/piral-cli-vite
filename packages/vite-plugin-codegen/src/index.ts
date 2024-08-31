@@ -1,10 +1,11 @@
 import type { Plugin } from 'vite';
-import { createRequire } from "module";
+import { createRequire } from 'module';
 
 const requireModule = createRequire(__filename);
 
 function reloadGenerator(name: string) {
-  delete require.cache[require.resolve(name)];
+  const path = requireModule.resolve(name);
+  delete requireModule.cache[path];
   return requireModule(name);
 }
 
