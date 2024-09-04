@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (tbd)
+## 1.2.0 (August 31, 2024)
 
 - Updated the Vite plugins to work with ESM and CJS
 
