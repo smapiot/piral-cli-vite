@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 (tbd)
+
+- Improved types of `vite-plugin-codegen` and `vite-plugin-pilet`
+
 ## 1.2.0 (August 31, 2024)
 
 - Updated the Vite plugins to work with ESM and CJS
