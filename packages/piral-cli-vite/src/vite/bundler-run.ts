@@ -28,12 +28,12 @@ export function runVite(options: ViteConfig) {
       if (debug && 'on' in watcher) {
         watcher.on('event', (event) => {
           if (event.code === 'ERROR') {
-            console.log(event);
+            console.error(event);
           } else if (event.code === 'BUNDLE_START') {
-            console.log('Bunding ...');
+            console.info('Bundling ...');
           } else if (event.code === 'BUNDLE_END') {
             event.result.close();
-            console.log('Bundled!');
+            console.info('Bundled!');
           } else if (event.code === 'END') {
             eventEmitter.emit('end', bundle);
           }
