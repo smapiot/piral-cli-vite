@@ -56,7 +56,7 @@ const handler: PiletBuildHandler = {
     
     checkSupported(schema);
 
-    const config = createCommonConfig('', options.outDir, options.develop, options.sourceMaps, options.minify, {});
+    const config = createCommonConfig(options.root, options.outDir, options.develop, options.sourceMaps, options.minify, {});
 
     return runVite({
       ...config,
