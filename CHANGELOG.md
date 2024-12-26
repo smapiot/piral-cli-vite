@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0 (tbd)
+
+- Use new codegen plugin
+
 ## 1.2.1 (December 4, 2024)
 
 - Improved types of `vite-plugin-codegen` and `vite-plugin-pilet`
