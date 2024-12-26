@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0 (tbd)
+## 1.3.0 (December 26, 2024)
 
 - Use new codegen plugin
 
