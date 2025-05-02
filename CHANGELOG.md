@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (tbd)
+
+- Improved transformation of *index.html*
+
 ## 1.3.0 (December 26, 2024)
 
 - Use new codegen plugin

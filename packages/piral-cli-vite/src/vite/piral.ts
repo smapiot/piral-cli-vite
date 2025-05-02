@@ -1,15 +1,39 @@
 import type { PiralBuildHandler } from 'piral-cli';
 import type { Plugin } from 'vite';
+import { load } from 'cheerio';
 import { dirname, resolve } from 'path';
 import { createCommonConfig } from './common';
 import { runVite } from './bundler-run';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 
+function isLocal(path: string) {
+  if (path) {
+    if (path.startsWith(':')) {
+      return false;
+    } else if (path.startsWith('http:')) {
+      return false;
+    } else if (path.startsWith('https:')) {
+      return false;
+    } else if (path.startsWith('data:')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
 function transformIndexHtml(html: string) {
-  return html
-    .replace(/<script\s+src\s*=\s*"\.\/(.*?)"\s*>/gm, '<script src="./$1" type=module>')
-    .replace(/<script\s+src\s*=\s*'\.\/(.*?)'\s*>/gm, "<script src='./$1' type=module>")
-    .replace(/<script\s*>/gm, '<script type=module>');
+  const templateContent = load(html);
+  templateContent('script[src]')
+    .filter((_, e) => isLocal(e.attribs.src))
+    .each((_, e) => {
+      if (!e.attribs.type) {
+        e.attribs.type = 'module';
+      }
+    });
+  return templateContent.html({});
 }
 
 function getConfigFile(root: string) {
