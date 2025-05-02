@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.1 (tbd)
+## 1.3.1 (May 2, 2025)
 
 - Improved transformation of *index.html*
 
