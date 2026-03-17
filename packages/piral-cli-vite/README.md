@@ -1,6 +1,6 @@
 [![Piral Logo](https://github.com/smapiot/piral/raw/main/docs/assets/logo.png)](https://piral.io)
 
-# [Piral CLI Vite](https://piral.io) &middot; [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/smapiot/piral-cli-vite/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/piral-cli-vite.svg?style=flat)](https://www.npmjs.com/package/piral-cli-vite) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://jestjs.io) [![Gitter Chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/piral-io/community)
+# [Piral CLI Vite](https://piral.io) &middot; [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/smapiot/piral-cli-vite/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/piral-cli-vite.svg?style=flat)](https://www.npmjs.com/package/piral-cli-vite) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://jestjs.io) [![Community Chat](https://img.shields.io/discord/1222632475449229352)](https://discord.gg/kKJ2FZmK8t)
 
 This plugin enables using [Vite](https://vitejs.dev/) as the bundler for Piral instances and pilets.
 
