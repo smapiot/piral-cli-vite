@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0 (tbd)
+## 1.4.0 (March 18, 2026)
 
 - Added provenance at publish
 
