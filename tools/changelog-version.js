@@ -9,7 +9,9 @@ function getChangelogVersion(changelogPath = defaultPath) {
   const matches = /^\#\# (\d+\.\d+\.\d+) .*/gm.exec(CHANGELOG);
 
   if (!matches) {
-    throw new Error('Invalid CHANGELOG format found. Need to fine line starting with "## x.y.z" to get the latest version.');
+    throw new Error(
+      'Invalid CHANGELOG format found. Need to fine line starting with "## x.y.z" to get the latest version.',
+    );
   }
 
   const version = matches[1];
@@ -50,7 +52,7 @@ if (require.main === module) {
   if (args.includes('--update')) {
     updateChangelogDate();
   } else if (args.includes('--apply')) {
-    execSync(`lerna version ${version} --no-git-tag-version --yes`, {
+    execSync(`lerna version ${version} --no-git-tag-version --yes  --force-publish`, {
       cwd,
       stdio: 'inherit',
       shell: true,
