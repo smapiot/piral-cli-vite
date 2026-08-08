@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/node": "^16",
     "@types/yargs": "^17",
-    "piral-cli": "1.7.3"
+    "piral-cli": "1.12.2"
   },
   "dependencies": {
     "cheerio": "^1",
